@@ -162,9 +162,9 @@ export function listSourcebooks(): Sourcebook[] {
 
 export interface SearchProvisionsOptions {
   query: string;
-  sourcebook?: string;
-  status?: string;
-  limit?: number;
+  sourcebook?: string | undefined;
+  status?: string | undefined;
+  limit?: number | undefined;
 }
 
 export function searchProvisions(opts: SearchProvisionsOptions): Provision[] {
@@ -260,8 +260,8 @@ export function checkProvisionCurrency(reference: string): {
 
 export interface SearchEnforcementOptions {
   query: string;
-  action_type?: string;
-  limit?: number;
+  action_type?: string | undefined;
+  limit?: number | undefined;
 }
 
 export function searchEnforcement(
