@@ -121,6 +121,12 @@ const TOOLS = [
     description: "Return metadata about this MCP server: version, data source, tool list.",
     inputSchema: { type: "object" as const, properties: {}, required: [] },
   },
+  {
+    name: "gb_fin_list_sources",
+    description:
+      "List all primary data sources used by this MCP server, including source URLs, issuing organisations, and update information.",
+    inputSchema: { type: "object" as const, properties: {}, required: [] },
+  },
 ];
 
 // ─── Zod schemas ─────────────────────────────────────────────────────────────
@@ -228,6 +234,51 @@ function createMcpServer(): Server {
               "UK Financial Conduct Authority (FCA) Handbook MCP server. Provides access to FCA rules, guidance, evidential provisions, and enforcement actions.",
             data_source: "FCA Handbook (https://www.handbook.fca.org.uk/)",
             tools: TOOLS.map((t) => ({ name: t.name, description: t.description })),
+          });
+        }
+
+        case "gb_fin_list_sources": {
+          return textContent({
+            sources: [
+              {
+                name: "FCA Handbook",
+                url: "https://www.handbook.fca.org.uk/",
+                organisation: "Financial Conduct Authority",
+                description:
+                  "FCA rules, guidance, evidential provisions (PRIN, SYSC, COBS, MCOB, etc.)",
+              },
+              {
+                name: "FCA Register",
+                url: "https://register.fca.org.uk/",
+                organisation: "Financial Conduct Authority",
+                description: "Authorised firms and individuals",
+              },
+              {
+                name: "FCA Final Notices",
+                url: "https://www.fca.org.uk/news/final-notices",
+                organisation: "Financial Conduct Authority",
+                description: "Enforcement actions, fines, bans",
+              },
+              {
+                name: "PRA Rulebook",
+                url: "https://www.prarulebook.co.uk/",
+                organisation: "Prudential Regulation Authority",
+                description: "Prudential rules for banks and insurers",
+              },
+              {
+                name: "UK Listing Rules",
+                url: "https://www.handbook.fca.org.uk/handbook/UKLR",
+                organisation: "Financial Conduct Authority",
+                description: "Listing standards for public companies",
+              },
+              {
+                name: "Financial Services and Markets Act 2000",
+                url: "https://www.legislation.gov.uk/ukpga/2000/8/contents",
+                organisation: "UK Parliament",
+                description: "Primary UK financial services statute",
+              },
+            ],
+            count: 6,
           });
         }
 
