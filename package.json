@@ -43,6 +43,7 @@
     "start": "node dist/src/http-server.js",
     "ingest": "npx tsx scripts/ingest.ts",
     "ingest:fca": "npx tsx scripts/ingest-fca.ts",
+    "ingest:fca:fetch": "npx tsx scripts/ingest-fca-fetch.ts",
     "seed": "npx tsx scripts/seed-sample.ts",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "lint": "tsc --noEmit"
